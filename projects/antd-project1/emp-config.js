@@ -1,3 +1,8 @@
+/*
+ * @Date: 2021-08-26 14:46:08
+ * @LastEditors: Dragon
+ * @LastEditTime: 2021-09-08 14:30:53
+ */
 const path = require('path')
 const packagePath = path.join(path.resolve('./'), 'package.json')
 const deps = require(packagePath).dependencies
@@ -6,8 +11,8 @@ const deps = require(packagePath).dependencies
 module.exports = ({config, env}) => {
   const port = 8004
   const projectName = 'emp-project1'
-  const host = 'localhost'
-  const publicPath = `http://${host}:${port}/`
+  const host = 'act-code-test.yy.com'
+  const publicPath = `https://${host}:${port}/`
   //
   config.plugin('html').tap(args => {
     args[0] = {
@@ -15,7 +20,7 @@ module.exports = ({config, env}) => {
       ...{
         title: 'EMP - Project1',
         files: {
-          js: [`http://${host}:8003/emp.js`],
+          // js: [`http://${host}:8003/emp.js`],
         },
       },
     }
@@ -47,4 +52,5 @@ module.exports = ({config, env}) => {
   })
   config.output.publicPath(publicPath)
   config.devServer.port(port)
+  config.devServer.https(true)
 }
